@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MECHA BATTLE - Pixel Arena Combat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="game-canvas"></canvas>
+        <div id="ui-overlay">
+            <div id="title-screen" class="screen active">
+                <div class="title-wrapper">
+                    <h1 class="game-title">MECHA<br>BATTLE</h1>
+                    <div class="title-sub">ARENA COMBAT</div>
+                </div>
+                <div class="controls-panel">
+                    <div class="control-column p1-controls">
+                        <div class="player-label">PLAYER 1</div>
+                        <div class="key-row"><span class="key">W</span></div>
+                        <div class="key-row">
+                            <span class="key">A</span><span class="key">S</span><span class="key">D</span>
+                        </div>
+                        <div class="key-row spacer"><span class="key wide">SPACE</span> <span class="action">Attack</span></div>
+                        <div class="key-row"><span class="key wide">SHIFT</span> <span class="action">Defend</span></div>
+                    </div>
+                    <div class="vs-badge">VS</div>
+                    <div class="control-column p2-controls">
+                        <div class="player-label">PLAYER 2</div>
+                        <div class="key-row"><span class="key">&#9650;</span></div>
+                        <div class="key-row">
+                            <span class="key">&#9664;</span><span class="key">&#9660;</span><span class="key">&#9654;</span>
+                        </div>
+                        <div class="key-row spacer"><span class="key wide">ENTER</span> <span class="action">Attack</span></div>
+                        <div class="key-row"><span class="key wide">CTRL</span> <span class="action">Defend</span></div>
+                    </div>
+                </div>
+                <div class="start-prompt">PRESS ENTER TO START</div>
+            </div>
+            <div id="result-screen" class="screen">
+                <div class="result-title" id="result-text">VICTORY</div>
+                <div class="result-sub" id="result-sub"></div>
+                <div class="restart-prompt">PRESS R TO RESTART</div>
+            </div>
+        </div>
+    </div>
+    <script src="js/utils.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/input.js"></script>
+    <script src="js/entities.js"></script>
+    <script src="js/renderer.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
