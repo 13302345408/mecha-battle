@@ -1,0 +1,229 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-dark: #0a0a1a;
+    --bg-mid: #1a1a2e;
+    --p1-primary: #00d4ff;
+    --p1-secondary: #0077be;
+    --p2-primary: #ff4444;
+    --p2-secondary: #cc0000;
+    --accent-yellow: #ffff00;
+    --accent-green: #00ff88;
+    --text-light: #e0e0e0;
+    --ui-border: #3a3a5c;
+}
+
+body {
+    background: var(--bg-dark);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Press Start 2P', monospace;
+    overflow: hidden;
+}
+
+#game-container {
+    position: relative;
+    width: 800px;
+    height: 480px;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+#game-canvas {
+    display: block;
+    width: 800px;
+    height: 480px;
+    background: var(--bg-mid);
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+#ui-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(10, 10, 26, 0.92);
+    pointer-events: auto;
+}
+
+.screen.active {
+    display: flex;
+}
+
+.title-wrapper {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.game-title {
+    font-size: 48px;
+    color: #fff;
+    text-shadow:
+        4px 4px 0 var(--p1-primary),
+        -2px -2px 0 var(--p2-primary),
+        0 0 30px rgba(0, 212, 255, 0.5);
+    line-height: 1.2;
+    animation: titlePulse 2s ease-in-out infinite;
+}
+
+.title-sub {
+    font-size: 14px;
+    color: var(--accent-yellow);
+    letter-spacing: 8px;
+    margin-top: 10px;
+    animation: blinkText 1.5s steps(2) infinite;
+}
+
+@keyframes titlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+@keyframes blinkText {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.controls-panel {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.control-column {
+    text-align: center;
+}
+
+.player-label {
+    font-size: 12px;
+    margin-bottom: 15px;
+    padding: 6px 16px;
+    border: 3px solid;
+}
+
+.p1-controls .player-label {
+    color: var(--p1-primary);
+    border-color: var(--p1-primary);
+    background: rgba(0, 212, 255, 0.1);
+}
+
+.p2-controls .player-label {
+    color: var(--p2-primary);
+    border-color: var(--p2-primary);
+    background: rgba(255, 68, 68, 0.1);
+}
+
+.key-row {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin: 3px 0;
+    align-items: center;
+}
+
+.key-row.spacer {
+    margin-top: 12px;
+}
+
+.key {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 28px;
+    padding: 0 8px;
+    background: #2a2a4a;
+    border: 2px solid #5a5a7c;
+    border-bottom-width: 4px;
+    color: #fff;
+    font-size: 9px;
+    font-family: 'Press Start 2P', monospace;
+}
+
+.key.wide {
+    min-width: 60px;
+}
+
+.action {
+    font-size: 8px;
+    color: #8888aa;
+    margin-left: 8px;
+}
+
+.vs-badge {
+    font-size: 24px;
+    color: var(--accent-yellow);
+    text-shadow: 0 0 20px rgba(255, 255, 0, 0.6);
+    animation: vsGlow 1s ease-in-out infinite alternate;
+}
+
+@keyframes vsGlow {
+    from { transform: scale(1); opacity: 0.8; }
+    to { transform: scale(1.15); opacity: 1; }
+}
+
+.start-prompt {
+    font-size: 14px;
+    color: var(--accent-green);
+    animation: blinkText 1s steps(2) infinite;
+    letter-spacing: 2px;
+}
+
+.result-title {
+    font-size: 56px;
+    margin-bottom: 20px;
+    animation: resultPopIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.result-title.victory {
+    color: var(--accent-green);
+    text-shadow:
+        4px 4px 0 #006633,
+        0 0 40px rgba(0, 255, 136, 0.6);
+}
+
+.result-title.defeat {
+    color: var(--p2-primary);
+    text-shadow:
+        4px 4px 0 #880000,
+        0 0 40px rgba(255, 68, 68, 0.6);
+}
+
+.result-sub {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 40px;
+}
+
+.restart-prompt {
+    font-size: 12px;
+    color: var(--accent-yellow);
+    animation: blinkText 1.2s steps(2) infinite;
+}
+
+@keyframes resultPopIn {
+    from { transform: scale(0) rotate(-10deg); opacity: 0; }
+    to { transform: scale(1) rotate(0deg); opacity: 1; }
+}
